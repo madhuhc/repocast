@@ -1,0 +1,10 @@
+{
+  "name": "repocast",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @repocast/web dev",
+    "build": "pnpm --filter @repocast/web build",
+    "test": "pnpm --filter @repocast/web test",
+    "clean": "rm -rf node_modules apps/web/node_modules packages/cli/node_modules apps/web/.next apps/web/data .turbo apps/web/.turbo"
+  }
+}

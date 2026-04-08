@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+:root {
+  --repocast-host-color: #3b82f6;
+  --repocast-guest-color: #8b5cf6;
+  --repocast-waveform-bg: #0c1222;
+  --repocast-card-bg: rgba(30, 41, 59, 0.72);
+  --repocast-border: rgba(51, 65, 85, 0.85);
+  --repocast-text: #f1f5f9;
+  --repocast-muted: #94a3b8;
+  --repocast-accent: #22d3ee;
+}
+
+@theme inline {
+  --color-background: #030712;
+  --color-foreground: #f1f5f9;
+  --color-card: rgba(30, 41, 59, 0.65);
+  --color-card-foreground: #f1f5f9;
+  --color-border: rgba(51, 65, 85, 0.75);
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #22d3ee;
+  --color-accent-foreground: #042f2e;
+  --color-host: #3b82f6;
+  --color-guest: #a78bfa;
+  --color-destructive: #f87171;
+  --color-waveform-bg: #0c1222;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  background-image:
+    radial-gradient(ellipse 100% 80% at 50% -30%, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(139, 92, 246, 0.14), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 0% 100%, rgba(34, 211, 238, 0.1), transparent 45%),
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(15, 23, 42, 0.9), transparent 50%);
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .glow-host {
+    box-shadow:
+      0 0 0 1px rgba(59, 130, 246, 0.25),
+      0 0 24px -4px rgba(59, 130, 246, 0.45);
+  }
+  .glow-guest {
+    box-shadow:
+      0 0 0 1px rgba(167, 139, 250, 0.25),
+      0 0 24px -4px rgba(139, 92, 246, 0.45);
+  }
+  .text-gradient-brand {
+    background: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 35%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .surface-card {
+    background: linear-gradient(
+      145deg,
+      rgba(30, 41, 59, 0.85) 0%,
+      rgba(15, 23, 42, 0.72) 100%
+    );
+    border: 1px solid rgba(51, 65, 85, 0.65);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 20px 50px -24px rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+  }
+  .surface-glass {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+  .ring-focus {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-background),
+      0 0 0 4px rgba(34, 211, 238, 0.35);
+  }
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(34, 211, 238, 0) 0%,
+      rgba(34, 211, 238, 0.12) 50%,
+      rgba(34, 211, 238, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.2s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.65s ease-out 0.08s both;
+}
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.65s ease-out 0.16s both;
+}
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.65s ease-out 0.24s both;
+}
+.animate-fade-up-delay-4 {
+  animation: fade-up 0.7s ease-out 0.32s both;
+}
+.animate-fade-up-delay-5 {
+  animation: fade-up 0.7s ease-out 0.4s both;
+}
+
+@keyframes aurora-shift {
+  0%,
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.55;
+  }
+  33% {
+    transform: translate(8%, -4%) scale(1.05);
+    opacity: 0.75;
+  }
+  66% {
+    transform: translate(-6%, 6%) scale(0.98);
+    opacity: 0.65;
+  }
+}
+
+@keyframes grid-pan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+@keyframes bar-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.landing-aurora-blob {
+  animation: aurora-shift 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.landing-aurora-blob-delayed {
+  animation: aurora-shift 22s ease-in-out infinite reverse;
+  animation-delay: -4s;
+}
+
+.landing-grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: grid-pan 60s linear infinite;
+}
+
+.landing-wave-bar {
+  transform-origin: center bottom;
+  animation: bar-bounce 0.9s ease-in-out infinite;
+}
